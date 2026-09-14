@@ -18,7 +18,27 @@ Each project follows a modular, testable, production-oriented structure:
 
 ## Shared Utilities
 
-The shared/ directory contains reusable modules used across projects, including quality metrics, validators, and reporting helpers.
+The `shared/` directory contains reusable modules used across projects, including quality metrics, validators, and reporting helpers.
+
+## Running a project
+
+Each project can be executed end-to-end with one command. Example for barcelona-airbnb:
+
+```powershell
+# From the datawash root
+cd barcelona-airbnb
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+# Download source data (requires Kaggle API token configured)
+kaggle datasets download -d zakariaeyoussefi/barcelona-airbnb-listings-inside-airbnb -p data\raw --unzip
+
+# Run the full pipeline
+python src\barcelona_airbnb\pipeline.py
+```
+
+Reports land in `barcelona-airbnb/reports/` and cleaned data in `data/interim/` and `data/processed/`.
 
 ## Author
 
