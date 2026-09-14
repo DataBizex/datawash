@@ -36,6 +36,7 @@ Thumbs.db
 
 # Reports output files (HTML)
 **/reports/*.html
+!**/reports/*.md
 
 # Secrets and credentials - never commit these
 .env
