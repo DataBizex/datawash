@@ -1,0 +1,49 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data - keep folder structure but not the actual data files
+**/data/raw/*
+**/data/interim/*
+**/data/processed/*
+!**/data/raw/.gitkeep
+!**/data/interim/.gitkeep
+!**/data/processed/.gitkeep
+
+# Reports output files (HTML)
+**/reports/*.html
+
+# Secrets and credentials - never commit these
+.env
+kaggle.json
+access_token
+*.pem
+*.key
+
+# Personal folders - never push
+/info/
+/personal notes/
