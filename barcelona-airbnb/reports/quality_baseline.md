@@ -1,6 +1,6 @@
 # Barcelona Airbnb – Raw Data Quality Baseline
 
-_Generated: 2026-09-14 21:08:06_
+_Generated: 2026-09-14 21:15:58_
 
 ## Overview
 

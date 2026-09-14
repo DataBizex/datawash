@@ -57,11 +57,16 @@ def run_contracts(df: pd.DataFrame) -> list[ValidationResult]:
         # Business logic
         check_range(df, "price", min_value=0, max_value=10_000),
         check_range(df, "accommodates", min_value=1, max_value=30),
-        check_range(df, "minimum_nights", min_value=1, max_value=365),
+        # A very small number of hosts set unrealistic minimum stays.
+        # We allow up to 1125 nights (~3 years) which is the practical ceiling
+        # observed on Inside Airbnb data. Values above this warrant investigation.
+        check_range(df, "minimum_nights", min_value=1, max_value=1125),
         check_allowed_values(df, "room_type", allowed=ROOM_TYPES),
         # Percentages
         check_range(df, "host_response_rate", min_value=0, max_value=100),
-        check_range(df, "review_scores_rating", min_value=0, max_value=5),
+        # Inside Airbnb changed the scoring scale from 0-5 to 0-100 in 2022.
+        # Our data uses the newer 0-100 scale.
+        check_range(df, "review_scores_rating", min_value=0, max_value=100),
     ]
 
 

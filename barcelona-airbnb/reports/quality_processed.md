@@ -1,6 +1,6 @@
 # Barcelona Airbnb – Processed Data Quality (After Cleaning)
 
-_Generated: 2026-09-14 21:08:08_
+_Generated: 2026-09-14 21:16:00_
 
 ## Overview
 
