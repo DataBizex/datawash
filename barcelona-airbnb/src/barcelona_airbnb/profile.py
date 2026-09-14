@@ -86,3 +86,29 @@ def profile_raw() -> Path:
 if __name__ == "__main__":
     output = profile_raw()
     print(f"\nReport saved: {output}")
+
+
+def profile_processed() -> Path:
+    """Profile the final processed dataset and write an after-cleaning report."""
+    import pandas as pd
+    from shared.utils.io import processed_dir
+
+    processed_path = processed_dir(PROJECT_NAME) / "listings.parquet"
+    if not processed_path.exists():
+        raise FileNotFoundError(
+            f"Processed file not found at {processed_path}. Run transform first."
+        )
+
+    logger.info(f"Reading processed data from {processed_path.name}")
+    df = pd.read_parquet(processed_path)
+
+    report_text = profile_dataframe(
+        df,
+        title="Barcelona Airbnb – Processed Data Quality (After Cleaning)",
+    )
+
+    output_path = reports_dir(PROJECT_NAME) / "quality_processed.md"
+    write_report(report_text, output_path)
+    logger.info(f"Report written to: {output_path}")
+
+    return output_path

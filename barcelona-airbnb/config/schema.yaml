@@ -1,0 +1,45 @@
+# Final schema for the processed Barcelona Airbnb dataset.
+# Column selection, target types, and derived columns are declared here,
+# not hard-coded in transform.py.
+
+# Columns kept in the final output, in this exact order.
+# Format: column_name: target_dtype
+columns:
+  # Identifiers
+  id: int64
+  host_id: int64
+
+  # Listing basics
+  name: string
+  neighbourhood_cleansed: string
+  latitude: float64
+  longitude: float64
+  room_type: string
+  accommodates: int64
+  bedrooms: float64
+  beds: float64
+  price: float64
+
+  # Availability
+  minimum_nights: int64
+  maximum_nights: int64
+  availability_365: int64
+  number_of_reviews: int64
+
+  # Host quality signals
+  host_response_rate: float64
+  host_acceptance_rate: float64
+  host_is_superhost: string
+  review_scores_rating: float64
+  review_scores_cleanliness: float64
+  review_scores_location: float64
+
+# Derived columns computed from the above
+derived:
+  price_per_person:
+    formula: "price / accommodates"
+    dtype: float64
+
+  is_entire_home:
+    formula: "room_type == 'Entire home/apt'"
+    dtype: bool
